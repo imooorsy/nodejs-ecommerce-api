@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
+mongoose.set("strictQuery", true);
+
 const dbConnection = () => {
   mongoose
     .connect(process.env.DB_URL)
     .then((conn) => {
-      console.log(
-        `DB Connected to ${conn.connection.host}:${conn.connection.port}`
-      );
+      console.log(`Database Connected: ${conn.connection.host}`);
     })
-    .catch((error) => {
-      console.log(`Error connecting to DB ${error}`);
+    .catch((err) => {
+      console.error(`Database Error: ${err}`);
       process.exit(1);
     });
 };
